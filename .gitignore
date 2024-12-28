@@ -50,3 +50,57 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# System plików
+.DS_Store
+Thumbs.db
+
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+[Pp]rofileData/
+
+# Pliki wygenerowane
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.opendb
+*.VC.db
+
+# Pliki systemowe
+*.swp
+*.lock
+*.log
+*.tmp
+*.temp
+*.bak
+*.cache
+
+# Pliki edytora Unity
+*.unityproj
+*.idea/
+*.vscode/
+*.asset
+*.prefs
+
+# Pakiety Asset Store
+*.unitypackage
+
+# Ustawienia platform
+[Oo]utput/
+[Bb]uild/
+
+# Dane Użytkownika
+.vs/
+*.private
