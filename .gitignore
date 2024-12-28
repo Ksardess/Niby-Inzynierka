@@ -104,3 +104,5 @@ Thumbs.db
 # Dane Użytkownika
 .vs/
 *.private
+
+Temp/
