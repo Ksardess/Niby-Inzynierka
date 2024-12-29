@@ -48,9 +48,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7411868780300540517, guid: aad7887f583687e4ca22b80011c65e2e, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594642293246393339, guid: aad7887f583687e4ca22b80011c65e2e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594642293246393339, guid: aad7887f583687e4ca22b80011c65e2e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1146963937
+      objectReference: {fileID: 0}
     - target: {fileID: 8367271420705882680, guid: aad7887f583687e4ca22b80011c65e2e, type: 3}
       propertyPath: m_Name
       value: Grass Tile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8367271420705882680, guid: aad7887f583687e4ca22b80011c65e2e, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -77,10 +93,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c58027430b1e1e46bffb0a9935b8e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseColor: {r: 0.4392157, g: 0.7411765, b: 0.36862746, a: 1}
-  _offsetColor: {r: 0.4, g: 0.6901961, b: 0.33333334, a: 1}
   _renderer: {fileID: 3956723713504716767}
   _highlight: {fileID: 4129997461623457345}
+  _baseColor: {r: 0.4392157, g: 0.7411765, b: 0.36862746, a: 1}
+  _offsetColor: {r: 0.4, g: 0.6901961, b: 0.33333334, a: 1}
 --- !u!212 &3956723713504716767 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7594642293246393339, guid: aad7887f583687e4ca22b80011c65e2e, type: 3}

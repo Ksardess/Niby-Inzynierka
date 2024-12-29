@@ -242,8 +242,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _width: 16
   _height: 9
-  _tilePrefab: {fileID: -6321829553646147919, guid: 199ea819e20302749a6254a92eb6da34, type: 3}
+  _grassTile: {fileID: -6321829553646147919, guid: 199ea819e20302749a6254a92eb6da34, type: 3}
+  _mountainTile: {fileID: 1708589370248358405, guid: ea28e355b0e44ed41baf811202fe1c62, type: 3}
   _cam: {fileID: 1364659066}
+  _playerPrefab: {fileID: 6199448384670973522, guid: f0a95449c329018498cb54d2fccac430, type: 3}
 --- !u!4 &1621073302
 Transform:
   m_ObjectHideFlags: 0
