@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 55826211759013306, guid: aad7887f583687e4ca22b80011c65e2e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5192363547775141988, guid: aad7887f583687e4ca22b80011c65e2e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -50,19 +54,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7594642293246393339, guid: aad7887f583687e4ca22b80011c65e2e, type: 3}
       propertyPath: m_Color.b
-      value: 0.4465112
+      value: 0.10902455
       objectReference: {fileID: 0}
     - target: {fileID: 7594642293246393339, guid: aad7887f583687e4ca22b80011c65e2e, type: 3}
       propertyPath: m_Color.g
-      value: 0.5178563
+      value: 0.25908995
       objectReference: {fileID: 0}
     - target: {fileID: 7594642293246393339, guid: aad7887f583687e4ca22b80011c65e2e, type: 3}
       propertyPath: m_Color.r
-      value: 0.5471698
+      value: 0.9245283
       objectReference: {fileID: 0}
     - target: {fileID: 7594642293246393339, guid: aad7887f583687e4ca22b80011c65e2e, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7594642293246393339, guid: aad7887f583687e4ca22b80011c65e2e, type: 3}
       propertyPath: m_SortingLayerID
@@ -70,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8367271420705882680, guid: aad7887f583687e4ca22b80011c65e2e, type: 3}
       propertyPath: m_Name
-      value: Mountain Tile
+      value: DamageTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

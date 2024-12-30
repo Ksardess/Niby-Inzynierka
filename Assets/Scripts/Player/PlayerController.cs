@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour {
             Vector2 newPosition = _currentPosition + movement;
 
             // Sprawdź, czy nowa pozycja jest w gridzie
-            if (_gridManager.GetTileAtPosition(newPosition) != null) {
+            Tile tile = _gridManager.GetTileAtPosition(newPosition);
+            if (tile != null && !(tile is BlockedTile)) {
                 MoveToTile(newPosition);
             }
         }
@@ -38,5 +39,11 @@ public class PlayerController : MonoBehaviour {
     private void MoveToTile(Vector2 newPosition) {
         _currentPosition = newPosition;
         transform.position = new Vector3(_currentPosition.x, _currentPosition.y, 0);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.TryGetComponent<DamageTile>(out var mountainTile)) {
+            mountainTile.OnPlayerEnter(GetComponent<Player>());
+        }
     }
 }
