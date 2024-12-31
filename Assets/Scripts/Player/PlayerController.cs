@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour {
             Tile tile = _gridManager.GetTileAtPosition(newPosition);
             if (tile != null && !(tile is BlockedTile)) {
                 MoveToTile(newPosition);
+                _gridManager.Tick(); // Informuj GridManager o ruchu
             }
         }
     }

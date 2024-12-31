@@ -60,6 +60,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.3207547
       objectReference: {fileID: 0}
+    - target: {fileID: 7594642293246393339, guid: aad7887f583687e4ca22b80011c65e2e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594642293246393339, guid: aad7887f583687e4ca22b80011c65e2e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1146963937
+      objectReference: {fileID: 0}
     - target: {fileID: 8367271420705882680, guid: aad7887f583687e4ca22b80011c65e2e, type: 3}
       propertyPath: m_Name
       value: BlockedTile
