@@ -13,7 +13,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
-        HandleMovement();
+        if (_gridManager.IsPlayerTurn())
+        {
+            HandleMovement();
+        }
     }
 
     private void HandleMovement() {
@@ -28,13 +31,23 @@ public class PlayerController : MonoBehaviour {
         if (movement != Vector2.zero) {
             Vector2 newPosition = _currentPosition + movement;
 
-            // Sprawdź, czy nowa pozycja jest w gridzie
+            // Sprawdź, czy nowa pozycja jest w gridzie i nie jest zajęta
             Tile tile = _gridManager.GetTileAtPosition(newPosition);
-            if (tile != null && !(tile is BlockedTile)) {
+            if (tile != null && !(tile is BlockedTile) && !IsPositionOccupiedByEnemy(newPosition)) {
                 MoveToTile(newPosition);
                 _gridManager.Tick(); // Informuj GridManager o ruchu
             }
         }
+    }
+
+    private bool IsPositionOccupiedByEnemy(Vector2 position) {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(position, 0.1f);
+        foreach (var collider in colliders) {
+            if (collider.GetComponent<BasicEnemy>() != null) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void MoveToTile(Vector2 newPosition) {

@@ -21,6 +21,7 @@ public class GridManager : MonoBehaviour {
 
     private PlayerController _player;
     private int _ticks = 0; // Licznik ticków
+    private bool _isPlayerTurn = true; // Flaga określająca, czy jest tura gracza
 
     void Start() {
         GenerateGrid();
@@ -68,8 +69,8 @@ public class GridManager : MonoBehaviour {
                 spawnedTile.Init(x, y);
                 _tiles[tilePos] = spawnedTile;
 
-                // Generowanie Basic Enemy na 1 na 100 Tile'i
-                if (UnityEngine.Random.value < 0.01f && tileToSpawn != _blockedTile && tileToSpawn != _damagetile && tilePos != playerStartPos) {
+                // Generowanie Basic Enemy na 1 na 10 Tile'i
+                if (UnityEngine.Random.value < 0.05f && tileToSpawn != _blockedTile && tileToSpawn != _damagetile && tilePos != playerStartPos) {
                     var enemyInstance = Instantiate(_basicEnemyPrefab, new Vector3(x, y, -1), Quaternion.identity);
                     var basicEnemy = enemyInstance.GetComponent<BasicEnemy>();
                     basicEnemy.Init(this, tilePos);
@@ -90,10 +91,26 @@ public class GridManager : MonoBehaviour {
     {
         _ticks++;
         UpdateTickText(); // Zaktualizuj tekst po każdym ticku
+        StartCoroutine(EnemyTurn());
+    }
+
+    private IEnumerator EnemyTurn()
+    {
+        _isPlayerTurn = false;
+        yield return new WaitForSeconds(0.5f); // Opóźnienie przed ruchem przeciwników
+
         foreach (var enemy in _enemies)
         {
             enemy.OnTick();
+            yield return new WaitForSeconds(0.01f); // Opóźnienie między ruchami przeciwników
         }
+
+        _isPlayerTurn = true;
+    }
+
+    public bool IsPlayerTurn()
+    {
+        return _isPlayerTurn;
     }
 
     private void UpdateTickText()
