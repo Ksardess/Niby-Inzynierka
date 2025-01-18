@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class BlockedTile : Tile
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject[] _variants; // Tablica wariantów
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public override void Init(int x, int y) {
+        // Wybierz losowy wariant
+        if (_variants.Length > 0) {
+            int randomIndex = Random.Range(0, _variants.Length);
+            GameObject variant = Instantiate(_variants[randomIndex], transform.position, Quaternion.identity);
+            variant.transform.SetParent(transform);
+        }
     }
 }
