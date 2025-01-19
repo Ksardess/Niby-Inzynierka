@@ -10,12 +10,16 @@ public class BasicEnemy : MonoBehaviour
     {
         _gridManager = gridManager;
         _currentPosition = startPosition;
-        transform.position = new Vector3(_currentPosition.x, _currentPosition.y, -1);
+        transform.position = new Vector3(_currentPosition.x, _currentPosition.y - 0.3f, -1); // Ustaw współrzędną Y z przesunięciem o -0.3
     }
 
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            _player = playerObject.transform;
+        }
     }
 
     public void OnTick()
@@ -66,6 +70,6 @@ public class BasicEnemy : MonoBehaviour
     private void MoveToTile(Vector2 newPosition)
     {
         _currentPosition = newPosition;
-        transform.position = new Vector3(_currentPosition.x, _currentPosition.y, -1);
+        transform.position = new Vector3(_currentPosition.x, _currentPosition.y - 0.3f, -1); // Ustaw współrzędną Y z przesunięciem o -0.3
     }
 }
