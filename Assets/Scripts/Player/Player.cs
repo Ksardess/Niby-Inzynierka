@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
     public int maxHelth = 100;
     public int currentHelth;
 
-    public HelthBar helthBar;
+    [SerializeField] private HelthBar helthBar; // Upewnij się, że pole jest widoczne w inspektorze
 
     void Start()
     {
@@ -21,10 +21,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //     TakeDamage(20);
-        //}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+             TakeDamage(20);
+        }
     }
 
     public void TakeDamage(int damage)

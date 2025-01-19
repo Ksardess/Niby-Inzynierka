@@ -58,6 +58,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7411868780300540517, guid: aad7887f583687e4ca22b80011c65e2e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 7594642293246393339, guid: aad7887f583687e4ca22b80011c65e2e,
         type: 3}
       propertyPath: m_Sprite
@@ -98,6 +103,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlockedTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8367271420705882680, guid: aad7887f583687e4ca22b80011c65e2e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

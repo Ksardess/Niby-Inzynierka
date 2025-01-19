@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour {
         _gridManager = gridManager;
         _currentPosition = startPosition;
 
-        // Ustaw gracza na początkowej pozycji
-        transform.position = new Vector3(_currentPosition.x, _currentPosition.y, -1);
+        // Ustaw gracza na początkowej pozycji z przesunięciem Y o -0.3
+        transform.position = new Vector3(_currentPosition.x, _currentPosition.y - 0.3f, -1);
     }
 
     void Update() {
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
 
     private void MoveToTile(Vector2 newPosition) {
         _currentPosition = newPosition;
-        transform.position = new Vector3(_currentPosition.x, _currentPosition.y, 0);
+        transform.position = new Vector3(_currentPosition.x, _currentPosition.y - 0.3f, -1); // Ustaw współrzędną Y z przesunięciem o -0.3
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

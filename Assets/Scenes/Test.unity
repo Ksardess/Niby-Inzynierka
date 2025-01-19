@@ -445,7 +445,7 @@ MonoBehaviour:
   _blockedTile: {fileID: 7095304575001911712, guid: 54b9b3e9fc7d09340b10d8725eb09718,
     type: 3}
   _cam: {fileID: 1364659066}
-  _playerPrefab: {fileID: 2671632371173181251, guid: 6b068063a7b7fd04a9f0e0582658134e,
+  _playerPrefab: {fileID: 6323719953710832613, guid: a4b4a6d32bcb19248a754d6602ffc7e4,
     type: 3}
   _basicEnemyPrefab: {fileID: 8765164969192717894, guid: 1c8047557e6727647a9a15c7e8eaca27,
     type: 3}
