@@ -1,19 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HelthBar : MonoBehaviour
+public class HealthBar : MonoBehaviour
 {
 
     public Slider slider;
 
-    public void SetHelth(int helth)
+    public void SetHealth(int health)
     {
-        slider.value = helth;
+        slider.value = health;
     }
     
-    public void SetMaxHelth(int helth)
+    public void SetMaxHealth(int health)
     {
-        slider.maxValue = helth;
-        slider.value = helth;
+        slider.maxValue = health;
+        slider.value = health;
     }
 }

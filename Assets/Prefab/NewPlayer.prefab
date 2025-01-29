@@ -235,7 +235,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.5}
+  m_Offset: {x: 0, y: 0.75}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -298,9 +298,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4daa6f1dc91ba3c47adbd538dfe53ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHelth: 100
-  currentHelth: 0
-  helthBar: {fileID: 5100068831064945447}
+  maxHealth: 100
+  currentHealth: 0
+  healthBar: {fileID: 0}
+  animator: {fileID: 2655505060201611074}
 --- !u!1 &7087049454815086010
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,15 +760,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6702472504866484495}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5100068831064945447 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2000973379947545128, guid: 661f34157d627be4da394b457b25db0f,
-    type: 3}
-  m_PrefabInstance: {fileID: 6702472504866484495}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18ad685b46e1ae24b8ad126242507634, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
