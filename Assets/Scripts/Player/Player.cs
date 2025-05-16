@@ -6,10 +6,12 @@ public class Player : MonoBehaviour
     private Vector2 _currentPosition;
 
     private HealthController healthController;
+    private GridManager gridManager; // Referencja do GridManager
 
     void Start()
     {
         healthController = GetComponent<HealthController>();
+        gridManager = FindObjectOfType<GridManager>(); // Znajdź GridManager w scenie
         _currentPosition = transform.position;
     }
 
@@ -19,7 +21,14 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1)) // PPM
         {
-            BasicAttack();
+            if (gridManager != null && gridManager.IsPlayerTurn()) // Sprawdź, czy jest tura gracza
+            {
+                BasicAttack();
+            }
+            else
+            {
+                Debug.Log("Nie możesz atakować w turze przeciwnika!");
+            }
         }
     }
 
@@ -47,6 +56,12 @@ public class Player : MonoBehaviour
                         if (enemyHealth != null)
                         {
                             enemyHealth.TakeDamage(25); // Zadaj 25 obrażeń
+                        }
+
+                        // Po wykonaniu ataku przejdź do tury przeciwnika
+                        if (gridManager != null)
+                        {
+                            gridManager.Tick();
                         }
 
                         return;

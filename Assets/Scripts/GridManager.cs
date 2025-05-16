@@ -91,6 +91,7 @@ public class GridManager : MonoBehaviour {
     {
         _ticks++;
         UpdateTickText(); // Zaktualizuj tekst po każdym ticku
+        _isPlayerTurn = false; // Zmień na turę przeciwnika
         StartCoroutine(EnemyTurn());
         Debug.Log("Ticks: " + _ticks);
     }
