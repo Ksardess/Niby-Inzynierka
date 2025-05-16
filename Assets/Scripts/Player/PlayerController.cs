@@ -55,9 +55,4 @@ public class PlayerController : MonoBehaviour {
         transform.position = new Vector3(_currentPosition.x, _currentPosition.y - 0.3f, -1); // Ustaw współrzędną Y z przesunięciem o -0.3
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.TryGetComponent<DamageTile>(out var mountainTile)) {
-            mountainTile.OnPlayerEnter(GetComponent<Player>());
-        }
-    }
 }

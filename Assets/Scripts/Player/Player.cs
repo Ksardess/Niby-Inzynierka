@@ -2,24 +2,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
-
-    [SerializeField] private HealthBar healthBar;
-    [SerializeField] private Animator animator; // Dodaj referencję do Animatora
-
+    [SerializeField] private Animator animator;
     private Vector2 _currentPosition;
+
+    private HealthController healthController;
 
     void Start()
     {
-        if (healthBar == null)
-        {
-            healthBar = GetComponentInChildren<HealthBar>();
-        }
-
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
-
+        healthController = GetComponent<HealthController>();
         _currentPosition = transform.position;
     }
 
@@ -41,39 +31,28 @@ public class Player : MonoBehaviour
         foreach (var direction in directions)
         {
             Vector2 adjacentPosition = _currentPosition + direction;
-            if (Vector2.Distance(mousePosition, adjacentPosition) < 0.75f) // Zwiększ odległość do 0.5f
+            if (Vector2.Distance(mousePosition, adjacentPosition) < 0.75f)
             {
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(mousePosition, 0.1f);
-                bool enemyFound = false;
                 foreach (var collider in colliders)
                 {
                     if (collider.CompareTag("Enemy"))
                     {
-                        enemyFound = true;
-                        // Dodaj animację ataku
                         if (animator != null)
                         {
                             animator.SetTrigger("Attack1");
                         }
 
-                        BasicEnemy enemy = collider.GetComponent<BasicEnemy>();
-                        if (enemy != null)
+                        HealthController enemyHealth = collider.GetComponent<HealthController>();
+                        if (enemyHealth != null)
                         {
-                            enemy.TakeDamage(25); // Zadaj 25 obrażeń
-                            Debug.Log("Zadano 25 obrażeń");
+                            enemyHealth.TakeDamage(25); // Zadaj 25 obrażeń
                         }
+
                         return;
                     }
                 }
             }
         }
-    }
-
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        Debug.Log("Otrzymałeś obrażenia: " + damage);
-
-        healthBar.SetHealth(currentHealth);
     }
 }
