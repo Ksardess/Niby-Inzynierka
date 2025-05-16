@@ -2,36 +2,78 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int maxHelth = 100;
-    public int currentHelth;
+    public int maxHealth = 100;
+    public int currentHealth;
 
-    public HelthBar helthBar;
+    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private Animator animator; // Dodaj referencję do Animatora
+
+    private Vector2 _currentPosition;
 
     void Start()
     {
-        if (helthBar == null)
+        if (healthBar == null)
         {
-            helthBar = GetComponentInChildren<HelthBar>();
+            healthBar = GetComponentInChildren<HealthBar>();
         }
 
-        currentHelth = maxHelth;
-        helthBar.SetMaxHelth(maxHelth);
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+
+        _currentPosition = transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //     TakeDamage(20);
-        //}
+        _currentPosition = transform.position; // Aktualizuj pozycję gracza
+
+        if (Input.GetMouseButtonDown(1)) // PPM
+        {
+            BasicAttack();
+        }
+    }
+
+    private void BasicAttack()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
+
+        foreach (var direction in directions)
+        {
+            Vector2 adjacentPosition = _currentPosition + direction;
+            if (Vector2.Distance(mousePosition, adjacentPosition) < 0.75f) // Zwiększ odległość do 0.5f
+            {
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(mousePosition, 0.1f);
+                bool enemyFound = false;
+                foreach (var collider in colliders)
+                {
+                    if (collider.CompareTag("Enemy"))
+                    {
+                        enemyFound = true;
+                        // Dodaj animację ataku
+                        if (animator != null)
+                        {
+                            animator.SetTrigger("Attack1");
+                        }
+
+                        BasicEnemy enemy = collider.GetComponent<BasicEnemy>();
+                        if (enemy != null)
+                        {
+                            enemy.TakeDamage(25); // Zadaj 25 obrażeń
+                            Debug.Log("Zadano 25 obrażeń");
+                        }
+                        return;
+                    }
+                }
+            }
+        }
     }
 
     public void TakeDamage(int damage)
     {
-        currentHelth -= damage;
+        currentHealth -= damage;
         Debug.Log("Otrzymałeś obrażenia: " + damage);
 
-        helthBar.SetHelth(currentHelth);
+        healthBar.SetHealth(currentHealth);
     }
 }

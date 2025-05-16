@@ -5,17 +5,22 @@ public class BasicEnemy : MonoBehaviour
     private Transform _player;
     private GridManager _gridManager;
     private Vector2 _currentPosition;
+    public int health = 50; // Przykładowa wartość zdrowia
 
     public void Init(GridManager gridManager, Vector2 startPosition)
     {
         _gridManager = gridManager;
         _currentPosition = startPosition;
-        transform.position = new Vector3(_currentPosition.x, _currentPosition.y, -1);
+        transform.position = new Vector3(_currentPosition.x, _currentPosition.y - 0.3f, -1); // Ustaw współrzędną Y z przesunięciem o -0.3
     }
 
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            _player = playerObject.transform;
+        }
     }
 
     public void OnTick()
@@ -28,6 +33,8 @@ public class BasicEnemy : MonoBehaviour
 
     private void HandleMovement()
     {
+        if (_player == null) return; // Sprawdź, czy _player nie jest null
+
         Vector2 direction = (_player.position - transform.position).normalized;
         Vector2 movement = Vector2.zero;
 
@@ -66,6 +73,18 @@ public class BasicEnemy : MonoBehaviour
     private void MoveToTile(Vector2 newPosition)
     {
         _currentPosition = newPosition;
-        transform.position = new Vector3(_currentPosition.x, _currentPosition.y, -1);
+        transform.position = new Vector3(_currentPosition.x, _currentPosition.y - 0.3f, -1); // Ustaw współrzędną Y z przesunięciem o -0.3
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        Debug.Log($"Przeciwnik otrzymał obrażenia: {damage}, pozostałe zdrowie: {health}");
+
+        if (health <= 0)
+        {
+            Debug.Log($"Przeciwnik zniszczony: {gameObject.name}");
+            Destroy(gameObject);
+        }
     }
 }

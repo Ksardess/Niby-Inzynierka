@@ -92,6 +92,7 @@ public class GridManager : MonoBehaviour {
         _ticks++;
         UpdateTickText(); // Zaktualizuj tekst po każdym ticku
         StartCoroutine(EnemyTurn());
+        Debug.Log("Ticks: " + _ticks);
     }
 
     private IEnumerator EnemyTurn()
@@ -101,8 +102,11 @@ public class GridManager : MonoBehaviour {
 
         foreach (var enemy in _enemies)
         {
-            enemy.OnTick();
-            yield return new WaitForSeconds(0.01f); // Opóźnienie między ruchami przeciwników
+            if (enemy != null) // Sprawdź, czy enemy nie jest null
+            {
+                enemy.OnTick();
+                yield return new WaitForSeconds(0.01f); // Opóźnienie między ruchami przeciwników
+            }
         }
 
         _isPlayerTurn = true;

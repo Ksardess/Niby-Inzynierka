@@ -13,8 +13,6 @@ TagManager:
   - Water
   - UI
   - 
-  - Player
-  - Tiles
   - 
   - 
   - 
@@ -28,7 +26,9 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - 1
+  - 2
+  - 3
   - 
   - 
   - 
@@ -42,14 +42,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Tiles
-    uniqueID: 1146963937
+  - name: Layer 1
+    uniqueID: 2425651459
     locked: 0
-  - name: Player
-    uniqueID: 1483435653
+  - name: Layer 2
+    uniqueID: 4250941897
     locked: 0
-  - name: Terrain
-    uniqueID: 263164315
+  - name: Layer 3
+    uniqueID: 4189426099
     locked: 0
   m_RenderingLayers:
   - Default
