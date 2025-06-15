@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
     private Vector2 _currentPosition;
     private GridManager _gridManager;
+    private HealthController healthController; // Dodaj referencję
 
     public void Init(GridManager gridManager, Vector2 startPosition) {
         _gridManager = gridManager;
@@ -10,9 +11,22 @@ public class PlayerController : MonoBehaviour {
 
         // Ustaw gracza na początkowej pozycji z przesunięciem Y o -0.3
         transform.position = new Vector3(_currentPosition.x, _currentPosition.y - 0.3f, -1);
+
+        // Pobierz HealthController
+        healthController = GetComponent<HealthController>();
+    }
+
+    void Start() {
+        // Jeśli Init nie został wywołany, pobierz HealthController tutaj
+        if (healthController == null)
+            healthController = GetComponent<HealthController>();
     }
 
     void Update() {
+        // Blokada ruchu jeśli gracz nie żyje
+        if (healthController != null && healthController.CurrentHealth <= 0)
+            return;
+
         if (_gridManager.IsPlayerTurn())
         {
             HandleMovement();

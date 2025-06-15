@@ -5,6 +5,7 @@ public class BasicEnemy : MonoBehaviour
     private Transform _player;
     private GridManager _gridManager;
     private Vector2 _currentPosition;
+    private HealthController healthController;
 
     void Start()
     {
@@ -13,6 +14,7 @@ public class BasicEnemy : MonoBehaviour
         {
             _player = playerObject.transform;
         }
+        healthController = GetComponent<HealthController>();
     }
 
     public void Init(GridManager gridManager, Vector2 startPosition)
@@ -24,8 +26,31 @@ public class BasicEnemy : MonoBehaviour
 
     public void OnTick()
     {
-        if (_player != null)
+        if (_player != null && healthController != null && healthController.CurrentHealth > 0)
         {
+            Vector2 playerPos = _player.position;
+            Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
+            foreach (var dir in directions)
+            {
+                if ((Vector2)transform.position + dir == (Vector2)playerPos)
+                {
+                    // Atak na gracza
+                    HealthController playerHealth = _player.GetComponent<HealthController>();
+                    if (playerHealth != null)
+                    {
+                        playerHealth.TakeDamage(25);
+                    }
+                    // Animacja ataku
+                    Animator animator = GetComponent<Animator>();
+                    if (animator != null)
+                    {
+                        animator.SetTrigger("Attack");
+                        animator.SetTrigger("Combat Idle");
+                    }
+                    return; // tylko jeden atak na tick
+                }
+            }
+            // Jeśli nie sąsiaduje z graczem, wykonaj ruch
             HandleMovement();
         }
     }
