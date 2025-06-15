@@ -60,24 +60,39 @@ public class BasicEnemy : MonoBehaviour
         if (_player == null) return;
 
         Vector2 direction = (_player.position - transform.position).normalized;
-        Vector2 movement = Vector2.zero;
+        Vector2[] tryDirections;
 
+        // Najpierw próbuj w osi dominującej, potem w drugiej
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
-            movement = direction.x > 0 ? Vector2.right : Vector2.left;
+            tryDirections = new Vector2[]
+            {
+                direction.x > 0 ? Vector2.right : Vector2.left,
+                direction.y > 0 ? Vector2.up : Vector2.down,
+                direction.y < 0 ? Vector2.down : Vector2.up // alternatywa, jeśli nie można w pionie
+            };
         }
         else
         {
-            movement = direction.y > 0 ? Vector2.up : Vector2.down;
+            tryDirections = new Vector2[]
+            {
+                direction.y > 0 ? Vector2.up : Vector2.down,
+                direction.x > 0 ? Vector2.right : Vector2.left,
+                direction.x < 0 ? Vector2.left : Vector2.right // alternatywa, jeśli nie można w poziomie
+            };
         }
 
-        Vector2 newPosition = _currentPosition + movement;
-
-        Tile tile = _gridManager.GetTileAtPosition(newPosition);
-        if (tile != null && !(tile is BlockedTile) && !IsPositionOccupied(newPosition))
+        foreach (var moveDir in tryDirections)
         {
-            MoveToTile(newPosition);
+            Vector2 newPosition = _currentPosition + moveDir;
+            Tile tile = _gridManager.GetTileAtPosition(newPosition);
+            if (tile != null && !(tile is BlockedTile) && !IsPositionOccupied(newPosition))
+            {
+                MoveToTile(newPosition);
+                return;
+            }
         }
+        // Jeśli nie znalazł żadnej drogi, nie rusza się w tym ticku
     }
 
     private bool IsPositionOccupied(Vector2 position)
