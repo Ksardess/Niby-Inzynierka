@@ -2,10 +2,15 @@ using UnityEngine;
 
 public class DamageTile : Tile
 {
-     public void OnPlayerEnter(Player player)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Player wszedł na MountainTile");
-        player.TakeDamage(10);
-        Debug.Log("Otrzymałeś obrażenia: 10");
+        // Sprawdź, czy obiekt, który wszedł na pole, ma komponent HealthController
+        HealthController healthController = other.GetComponent<HealthController>();
+        if (healthController != null)
+        {
+            // Zadaj 10 obrażeń obiektowi
+            healthController.TakeDamage(10);
+            Debug.Log($"{other.gameObject.name} wszedł na DamageTile i otrzymał 10 obrażeń.");
+        }
     }
 }

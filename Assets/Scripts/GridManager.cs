@@ -70,7 +70,7 @@ public class GridManager : MonoBehaviour {
                 _tiles[tilePos] = spawnedTile;
 
                 // Generowanie Basic Enemy na 1 na 10 Tile'i
-                if (UnityEngine.Random.value < 0.05f && tileToSpawn != _blockedTile && tileToSpawn != _damagetile && tilePos != playerStartPos) {
+                if (UnityEngine.Random.value < 0.01f && tileToSpawn != _blockedTile && tileToSpawn != _damagetile && tilePos != playerStartPos) {
                     var enemyInstance = Instantiate(_basicEnemyPrefab, new Vector3(x, y, -1), Quaternion.identity);
                     var basicEnemy = enemyInstance.GetComponent<BasicEnemy>();
                     basicEnemy.Init(this, tilePos);
@@ -91,6 +91,7 @@ public class GridManager : MonoBehaviour {
     {
         _ticks++;
         UpdateTickText(); // Zaktualizuj tekst po każdym ticku
+        _isPlayerTurn = false; // Zmień na turę przeciwnika
         StartCoroutine(EnemyTurn());
         Debug.Log("Ticks: " + _ticks);
     }
