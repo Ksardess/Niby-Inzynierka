@@ -34,6 +34,13 @@ public class Player : MonoBehaviour
 
     private void BasicAttack()
     {
+        // Dodaj blokadę ataku jeśli gracz nie żyje
+        if (healthController != null && healthController.CurrentHealth <= 0)
+        {
+            Debug.Log("Nie możesz atakować, jesteś martwy!");
+            return;
+        }
+
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
 
@@ -53,6 +60,10 @@ public class Player : MonoBehaviour
                         }
 
                         HealthController enemyHealth = collider.GetComponent<HealthController>();
+                        if (enemyHealth == null && collider.transform.parent != null)
+                        {
+                            enemyHealth = collider.transform.parent.GetComponent<HealthController>();
+                        }
                         if (enemyHealth != null)
                         {
                             enemyHealth.TakeDamage(25); // Zadaj 25 obrażeń
