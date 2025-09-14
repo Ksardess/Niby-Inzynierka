@@ -13,6 +13,7 @@ public class GridManager : MonoBehaviour {
 
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private GameObject _basicEnemyPrefab; // Dodaj prefabrykat Basic Enemy
+    [SerializeField] private GameObject _coinPrefab; // Dodaj to pole
 
     [SerializeField] private TextMeshProUGUI _tickText; // Dodaj referencję do elementu TextMeshPro
 
@@ -69,12 +70,19 @@ public class GridManager : MonoBehaviour {
                 spawnedTile.Init(x, y);
                 _tiles[tilePos] = spawnedTile;
 
-                // Generowanie Basic Enemy na 1 na 10 Tile'i
+                // Generowanie Basic Enemy na 1 na 100 Tile'i
                 if (UnityEngine.Random.value < 0.01f && tileToSpawn != _blockedTile && tileToSpawn != _damagetile && tilePos != playerStartPos) {
                     var enemyInstance = Instantiate(_basicEnemyPrefab, new Vector3(x, y, -1), Quaternion.identity);
                     var basicEnemy = enemyInstance.GetComponent<BasicEnemy>();
                     basicEnemy.Init(this, tilePos);
                     _enemies.Add(basicEnemy); // Dodaj przeciwnika do listy
+                }
+
+                // GENEROWANIE COIN NA LOSOWYCH GRASS TILE
+                if (tileToSpawn == _grassTile && tilePos != playerStartPos && UnityEngine.Random.value < 0.05f) // np. 5% szansy
+                {
+                    Instantiate(_coinPrefab, new Vector3(x + 1f, y + 1f, -0.02f), Quaternion.identity);
+                    // Pozycja (x+1, y+1) ustawia coin na środku tile'a
                 }
             }
         }
