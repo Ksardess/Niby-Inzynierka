@@ -449,6 +449,8 @@ MonoBehaviour:
     type: 3}
   _basicEnemyPrefab: {fileID: 1689866831511430, guid: 2e2183501755a214591e802f3aff33d2,
     type: 3}
+  _coinPrefab: {fileID: 9114541859893251328, guid: 1454ca3909f84fb4aa27f7a25c11555a,
+    type: 3}
   _tickText: {fileID: 82882324}
 --- !u!4 &1621073302
 Transform:
