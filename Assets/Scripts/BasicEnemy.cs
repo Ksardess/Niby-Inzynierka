@@ -6,6 +6,7 @@ public class BasicEnemy : MonoBehaviour
     private GridManager _gridManager;
     private Vector2 _currentPosition;
     private HealthController healthController;
+    [SerializeField] private GameObject corpsePrefab; // Przypisz prefab zwłok w Inspectorze
 
     void Start()
     {
@@ -112,5 +113,14 @@ public class BasicEnemy : MonoBehaviour
     {
         _currentPosition = newPosition;
         transform.position = new Vector3(_currentPosition.x, _currentPosition.y - 0.3f, -1);
+    }
+
+        public void DestroyAfterDeathAnimation()
+    {
+        if (corpsePrefab != null)
+        {
+            Instantiate(corpsePrefab, transform.position, Quaternion.identity);
+        }
+        Destroy(gameObject);
     }
 }

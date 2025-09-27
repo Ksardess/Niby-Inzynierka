@@ -128,6 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392eefbff463a8c4aadacad9ef8c4e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  corpsePrefab: {fileID: 395852312568250941, guid: 551948c9df92ea8489da807ac6e80206,
+    type: 3}
 --- !u!61 &61252362154681264
 BoxCollider2D:
   m_ObjectHideFlags: 0
