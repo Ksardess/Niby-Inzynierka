@@ -130,6 +130,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   corpsePrefab: {fileID: 395852312568250941, guid: 551948c9df92ea8489da807ac6e80206,
     type: 3}
+  drops:
+  - itemPrefab: {fileID: 8873371085213862652, guid: 6b53a63d39d28d54f82f1a91589e2ec3,
+      type: 3}
+    dropChance: 0.5
+    minAmount: 1
+    maxAmount: 1
+  - itemPrefab: {fileID: 9114541859893251328, guid: 1454ca3909f84fb4aa27f7a25c11555a,
+      type: 3}
+    dropChance: 0.5
+    minAmount: 1
+    maxAmount: 3
 --- !u!61 &61252362154681264
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -188,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b172241fbe454e4785f32e22eaf3034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 25
   healthBar: {fileID: 0}
 --- !u!114 &3481460053043309202
 MonoBehaviour:
