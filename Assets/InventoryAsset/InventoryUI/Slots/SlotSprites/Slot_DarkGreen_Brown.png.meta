@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Slot_DarkGreen_Brown_0: 1230496226994436547
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
