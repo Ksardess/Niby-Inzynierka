@@ -33,6 +33,13 @@ public class ItemPickup : MonoBehaviour
             Debug.LogWarning("Brak InventoryController w scenie!");
         }
 
+        // Wywołaj Tick po podniesieniu przedmiotu
+        GridManager gridManager = FindFirstObjectByType<GridManager>();
+        if (gridManager != null)
+        {
+            gridManager.Tick();
+        }
+
         // Usuń przedmiot z planszy
         Destroy(gameObject);
     }

@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         healthController = GetComponent<HealthController>();
-        gridManager = FindObjectOfType<GridManager>(); // Znajdź GridManager w scenie
+        gridManager = FindFirstObjectByType<GridManager>(); // Znajdź GridManager w scenie
         _currentPosition = transform.position;
     }
 
