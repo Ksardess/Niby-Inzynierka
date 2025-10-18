@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Inspector
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 38
+  controlID: 94
   draggingID: 0
 --- !u!114 &3
 MonoBehaviour:
@@ -561,7 +561,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefab
+    - Assets/Prefab/UI
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -571,16 +571,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefab
+  - Assets/Prefab/UI
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\HARDPC\Niby-Inzynierka
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 156}
-    m_SelectedIDs: f0b90000
-    m_LastClickedID: 47600
-    m_ExpandedIDs: 0000000004bf000006bf000008bf00000abf00000cbf00000ebf0000
+    scrollPos: {x: 0, y: 108}
+    m_SelectedIDs: 86bf0000
+    m_LastClickedID: 49030
+    m_ExpandedIDs: 000000002ebc000030bc000032bc000034bc000036bc000038bc0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -609,7 +609,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000004bf000006bf000008bf00000abf00000cbf00000ebf0000
+    m_ExpandedIDs: 000000002ebc000030bc000032bc000034bc000036bc000038bc0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -759,7 +759,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 8c29fbff0e6e020070700200c0700200
+      m_ExpandedIDs: 6e4cffff1497ffff70f4ffffd2bf0000a0c20000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1394,7 +1394,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 650.5102, y: 202.66222, z: -90.42326}
     speed: 2
-    m_Value: {x: 836.00146, y: 209.86073, z: 0.8856622}
+    m_Value: {x: 633.32166, y: 302.96646, z: -3.6333058}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1446,7 +1446,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 443.28897
     speed: 2
-    m_Value: 85.04997
+    m_Value: 404.32083
   m_Ortho:
     m_Target: 1
     speed: 2

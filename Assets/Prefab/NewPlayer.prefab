@@ -14003,6 +14003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiObject: {fileID: 5471814759178678262}
   toggleKey: 105
+  groupParent: {fileID: 0}
 --- !u!224 &2589559656980703363 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9145687085773478284, guid: 661f34157d627be4da394b457b25db0f,
@@ -14044,6 +14045,11 @@ PrefabInstance:
       propertyPath: uiObject
       value: 
       objectReference: {fileID: 8337536189917808230}
+    - target: {fileID: 2408956092541577758, guid: 38773fe3f4206d94a9883ac02fae1266,
+        type: 3}
+      propertyPath: groupParent
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2423422392478106466, guid: 38773fe3f4206d94a9883ac02fae1266,
         type: 3}
       propertyPath: uiObject
