@@ -1,4 +1,15 @@
 using UnityEngine;
+using System.Collections.Generic;
+
+[System.Serializable]
+public class EnemyDropItem
+{
+    public GameObject itemPrefab; // Prefab przedmiotu do dropnięcia
+    [Range(0f, 1f)]
+    public float dropChance = 0.5f; // Szansa na drop (0-1)
+    public int minAmount = 1; // Minimalna ilość
+    public int maxAmount = 1; // Maksymalna ilość
+}
 
 public class BasicEnemy : MonoBehaviour
 {
@@ -7,6 +18,9 @@ public class BasicEnemy : MonoBehaviour
     private Vector2 _currentPosition;
     private HealthController healthController;
     [SerializeField] private GameObject corpsePrefab; // Przypisz prefab zwłok w Inspectorze
+
+    [Header("Drop po śmierci")]
+    [SerializeField] private List<EnemyDropItem> drops = new List<EnemyDropItem>(); // Lista dropów
 
     void Start()
     {
@@ -115,11 +129,24 @@ public class BasicEnemy : MonoBehaviour
         transform.position = new Vector3(_currentPosition.x, _currentPosition.y - 0.3f, -1);
     }
 
-        public void DestroyAfterDeathAnimation()
+    public void DestroyAfterDeathAnimation()
     {
         if (corpsePrefab != null)
         {
             Instantiate(corpsePrefab, transform.position, Quaternion.identity);
+        }
+
+        // Drop przedmiotów po śmierci
+        foreach (var drop in drops)
+        {
+            if (drop.itemPrefab != null && Random.value < drop.dropChance)
+            {
+                int amount = Random.Range(drop.minAmount, drop.maxAmount + 1);
+                for (int i = 0; i < amount; i++)
+                {
+                    Instantiate(drop.itemPrefab, transform.position, Quaternion.identity);
+                }
+            }
         }
         Destroy(gameObject);
     }
