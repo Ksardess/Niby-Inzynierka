@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class HealthController : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class HealthController : MonoBehaviour
     public int CurrentHealth => currentHealth;
 
     [SerializeField] private HealthBar healthBar; // Opcjonalne, dla gracza
+    [SerializeField] private TextMeshProUGUI healthText; // przypisz w Inspectorze
 
     void Start()
     {
@@ -17,12 +19,16 @@ public class HealthController : MonoBehaviour
             healthBar.SetMaxHealth(maxHealth);
             healthBar.SetHealth(currentHealth);
         }
+
+        UpdateHealthText();
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         Debug.Log($"{gameObject.name} otrzymał obrażenia: {damage}, pozostałe zdrowie: {currentHealth}");
+
+        UpdateHealthText();
 
         Animator animator = GetComponent<Animator>();
         if (animator != null)
@@ -56,7 +62,6 @@ public class HealthController : MonoBehaviour
         Destroy(gameObject);
     }
 
-
     public void Heal(int amount)
     {
         currentHealth += amount;
@@ -71,5 +76,13 @@ public class HealthController : MonoBehaviour
         {
             healthBar.SetHealth(currentHealth);
         }
+
+        UpdateHealthText();
+    }
+
+    private void UpdateHealthText()
+    {
+        if (healthText == null) return;
+        healthText.text = $"{Mathf.Max(0, currentHealth)}/{maxHealth}";
     }
 }

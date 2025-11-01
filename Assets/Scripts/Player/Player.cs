@@ -7,11 +7,13 @@ public class Player : MonoBehaviour
 
     private HealthController healthController;
     private GridManager gridManager; // Referencja do GridManager
+    private PlayerStats playerStats; // referencja do statystyk
 
     void Start()
     {
         healthController = GetComponent<HealthController>();
         gridManager = FindFirstObjectByType<GridManager>(); // Znajdź GridManager w scenie
+        playerStats = GetComponent<PlayerStats>();
         _currentPosition = transform.position;
     }
 
@@ -54,6 +56,13 @@ public class Player : MonoBehaviour
                 {
                     if (collider.CompareTag("Enemy"))
                     {
+                        // zużyj 5 energii tylko jeśli atak ma się wykonać
+                        if (playerStats != null && !playerStats.TryUseEnergy(5))
+                        {
+                            Debug.Log("Nie masz wystarczająco energii!");
+                            return;
+                        }
+
                         if (animator != null)
                         {
                             animator.SetTrigger("Attack1");
