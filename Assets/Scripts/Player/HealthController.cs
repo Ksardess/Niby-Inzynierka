@@ -25,8 +25,15 @@ public class HealthController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        Debug.Log($"{gameObject.name} otrzymał obrażenia: {damage}, pozostałe zdrowie: {currentHealth}");
+        // Jeśli obiekt posiada PlayerStats (najpewniej gracz), użyj go do obliczenia redukcji
+        int finalDamage = damage;
+        if (TryGetComponent<PlayerStats>(out var ps))
+        {
+            finalDamage = ps.CalculateDamageAfterArmor(damage);
+        }
+
+        currentHealth -= finalDamage;
+        Debug.Log($"{gameObject.name} otrzymał obrażenia: {damage} (po pancerzu: {finalDamage}), pozostałe zdrowie: {currentHealth}");
 
         UpdateHealthText();
 

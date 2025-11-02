@@ -21,6 +21,15 @@ public class Player : MonoBehaviour
     {
         _currentPosition = transform.position; // Aktualizuj pozycję gracza
 
+        // SPACJA uruchamia Tick()
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (gridManager != null)
+            {
+                gridManager.Tick();
+            }
+        }
+
         if (Input.GetMouseButtonDown(1)) // PPM
         {
             if (gridManager != null && gridManager.IsPlayerTurn()) // Sprawdź, czy jest tura gracza

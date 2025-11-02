@@ -12,10 +12,16 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int energyRegenAmount = 5;      // ile energii regeneruje
     [SerializeField] private int regenIntervalTicks = 2;     // co ile ticków regeneracja
 
+    [Header("Armor")]
+    [SerializeField, Tooltip("Ilość punktów pancerza gracza")] private int armorPoints = 0;
+    [SerializeField, Tooltip("Ile punktów pancerza daje -1 do otrzymywanych obrażeń")] private int armorPointsPerDamageReduction = 2;
+
     private int currentEnergy;
     private bool attackedThisTick = false; // ustawiane przez gracza, jeśli wykonał atak w tej turze
 
     public int CurrentEnergy => currentEnergy;
+    public int ArmorPoints => armorPoints;
+    public int ArmorPointsPerDamageReduction => Mathf.Max(1, armorPointsPerDamageReduction);
 
     void Awake()
     {
@@ -74,5 +80,29 @@ public class PlayerStats : MonoBehaviour
 
         // reset flagi ataku po obsłużeniu Tick'a
         attackedThisTick = false;
+    }
+
+    // ---- Armor helpers (wywoływane przez HealthController) ----
+    public void AddArmor(int amount)
+    {
+        armorPoints = Mathf.Max(0, armorPoints + amount);
+    }
+
+    public void SetArmor(int value)
+    {
+        armorPoints = Mathf.Max(0, value);
+    }
+
+    public void SetArmorPointsPerDamageReduction(int value)
+    {
+        armorPointsPerDamageReduction = Mathf.Max(1, value);
+    }
+
+    // Zwraca ostateczną wartość obrażeń po uwzględnieniu pancerza
+    public int CalculateDamageAfterArmor(int incomingDamage)
+    {
+        if (armorPointsPerDamageReduction <= 0) return incomingDamage;
+        int reduction = armorPoints / ArmorPointsPerDamageReduction;
+        return Mathf.Max(0, incomingDamage - reduction);
     }
 }
