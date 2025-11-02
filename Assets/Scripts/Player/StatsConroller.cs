@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class PlayerStats : MonoBehaviour
+public class StatsController : MonoBehaviour
 {
     [SerializeField] private int maxEnergy = 100;
     [SerializeField] private Slider energySlider;

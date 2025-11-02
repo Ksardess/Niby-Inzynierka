@@ -7,13 +7,13 @@ public class Player : MonoBehaviour
 
     private HealthController healthController;
     private GridManager gridManager; // Referencja do GridManager
-    private PlayerStats playerStats; // referencja do statystyk
+    private StatsController playerStats; // referencja do statystyk
 
     void Start()
     {
         healthController = GetComponent<HealthController>();
         gridManager = FindFirstObjectByType<GridManager>(); // Znajdź GridManager w scenie
-        playerStats = GetComponent<PlayerStats>();
+        playerStats = GetComponent<StatsController>();
         _currentPosition = transform.position;
     }
 

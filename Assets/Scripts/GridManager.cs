@@ -21,7 +21,7 @@ public class GridManager : MonoBehaviour {
     private List<BasicEnemy> _enemies = new List<BasicEnemy>(); // Lista przeciwników
 
     private PlayerController _player;
-    private PlayerStats _playerStats; // referencja do statystyk gracza
+    private StatsController _playerStats; // referencja do statystyk gracza
     private int _ticks = 0; // Licznik ticków
     private bool _isPlayerTurn = true; // Flaga określająca, czy jest tura gracza
 
@@ -37,8 +37,8 @@ public class GridManager : MonoBehaviour {
         _player = playerInstance.GetComponent<PlayerController>();
         _player.Init(this, new Vector2(_width / 2, _height / 2));
 
-        // przypnij PlayerStats jeśli istnieje na prefabie
-        _playerStats = playerInstance.GetComponent<PlayerStats>();
+        // przypnij StatsController jeśli istnieje na prefabie
+        _playerStats = playerInstance.GetComponent<StatsController>();
 
         CameraFollow cameraFollow = _cam.GetComponent<CameraFollow>();
         if (cameraFollow != null)

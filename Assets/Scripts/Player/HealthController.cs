@@ -25,9 +25,9 @@ public class HealthController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        // Jeśli obiekt posiada PlayerStats (najpewniej gracz), użyj go do obliczenia redukcji
+        // Jeśli obiekt posiada StatsController (najpewniej gracz), użyj go do obliczenia redukcji
         int finalDamage = damage;
-        if (TryGetComponent<PlayerStats>(out var ps))
+        if (TryGetComponent<StatsController>(out var ps))
         {
             finalDamage = ps.CalculateDamageAfterArmor(damage);
         }
