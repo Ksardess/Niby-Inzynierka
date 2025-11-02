@@ -60,7 +60,7 @@ public class BasicEnemy : MonoBehaviour
                     if (animator != null)
                     {
                         animator.SetTrigger("Attack");
-                        animator.SetTrigger("Combat Idle");
+                        animator.SetTrigger("CombatIdle");
                     }
                     return; // tylko jeden atak na tick
                 }
