@@ -25,10 +25,17 @@ public class HealthController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        // Jeśli obiekt posiada StatsController (najpewniej gracz), użyj go do obliczenia redukcji
+        // Jeśli obiekt posiada StatsController (najpewniej gracz), najpierw spróbuj uniknąć obrażeń (Elusion),
+        // potem oblicz redukcję przez pancerz.
         int finalDamage = damage;
         if (TryGetComponent<StatsController>(out var ps))
         {
+            // elusion — szansa na uniknięcie całych obrażeń
+            if (ps.RollElusion())
+            {
+                Debug.Log($"{gameObject.name} uniknął obrażeń dzięki Elusion!");
+                return;
+            }
             finalDamage = ps.CalculateDamageAfterArmor(damage);
         }
 

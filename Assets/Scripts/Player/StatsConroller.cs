@@ -22,6 +22,11 @@ public class StatsController : MonoBehaviour
     private float critChancePercent = 0f;
     public float CritChancePercent => critChancePercent;
 
+    [Header("Elusion")]
+    [SerializeField, Range(0f, 100f), Tooltip("Szansa na uniknięcie otrzymania obrażeń w procentach (np. 10 = 10%)")]
+    private float elusionPercent = 0f;
+    public float ElusionPercent => elusionPercent;
+    
     [Header("Combat")]
     [SerializeField, Tooltip("Podstawowe obrażenia zadawane przez gracza")]
     private int baseDamage = 25;
@@ -123,5 +128,13 @@ public class StatsController : MonoBehaviour
     {
         if (critChancePercent <= 0f) return false;
         return Random.value < (critChancePercent / 100f);
+    }
+
+    // --- DODANE: elusion (uniknięcie obrażeń) ---
+    // Zwraca true jeśli rzut elusion się powiódł (uniknięcie obrażeń)
+    public bool RollElusion()
+    {
+        if (elusionPercent <= 0f) return false;
+        return Random.value < (elusionPercent / 100f);
     }
 }

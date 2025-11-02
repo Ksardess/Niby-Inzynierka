@@ -112,7 +112,7 @@ public class GridManager : MonoBehaviour {
 
         _isPlayerTurn = false; // Zmień na turę przeciwnika
         StartCoroutine(EnemyTurn());
-        Debug.Log("Ticks: " + _ticks);
+        //Debug.Log("Ticks: " + _ticks);
     }
 
     private IEnumerator EnemyTurn()
