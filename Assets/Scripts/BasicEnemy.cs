@@ -17,6 +17,7 @@ public class BasicEnemy : MonoBehaviour
     private GridManager _gridManager;
     private Vector2 _currentPosition;
     private HealthController healthController;
+    private StatsController _stats; // <-- dodane
     [SerializeField] private GameObject corpsePrefab; // Przypisz prefab zwłok w Inspectorze
 
     [Header("Drop po śmierci")]
@@ -30,6 +31,7 @@ public class BasicEnemy : MonoBehaviour
             _player = playerObject.transform;
         }
         healthController = GetComponent<HealthController>();
+        _stats = GetComponent<StatsController>(); // <-- pobierz własny StatsController
     }
 
     public void Init(GridManager gridManager, Vector2 startPosition)
@@ -53,7 +55,9 @@ public class BasicEnemy : MonoBehaviour
                     HealthController playerHealth = _player.GetComponent<HealthController>();
                     if (playerHealth != null)
                     {
-                        playerHealth.TakeDamage(25);
+                        // użyj baseDamage z własnego StatsController jeśli dostępny, w przeciwnym razie fallback 5
+                        int damage = (_stats != null) ? _stats.BaseDamage : 5;
+                        playerHealth.TakeDamage(damage);
                     }
                     // Animacja ataku
                     Animator animator = GetComponent<Animator>();

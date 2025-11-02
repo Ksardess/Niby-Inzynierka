@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 61252362154681264}
   - component: {fileID: 1032223782442680035}
   - component: {fileID: 3481460053043309202}
+  - component: {fileID: -4758029950250948363}
   m_Layer: 20
   m_Name: LightBandit
   m_TagString: Enemy
@@ -201,6 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 25
   healthBar: {fileID: 0}
+  healthText: {fileID: 0}
 --- !u!114 &3481460053043309202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +216,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightObject: {fileID: 320939432127965550}
+--- !u!114 &-4758029950250948363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689866831511430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c512ea5144f4ca842b26e53e0bde7f41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxEnergy: 100
+  energySlider: {fileID: 0}
+  energyText: {fileID: 0}
+  energyRegenAmount: 5
+  regenIntervalTicks: 2
+  armorPoints: 0
+  armorPointsPerDamageReduction: 2
+  critChancePercent: 88.3
+  elusionPercent: 0
+  baseDamage: 50
 --- !u!1 &1943394156383696
 GameObject:
   m_ObjectHideFlags: 0
