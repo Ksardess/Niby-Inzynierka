@@ -16,6 +16,17 @@ public class StatsController : MonoBehaviour
     [SerializeField, Tooltip("Ilość punktów pancerza gracza")] private int armorPoints = 0;
     [SerializeField, Tooltip("Ile punktów pancerza daje -1 do otrzymywanych obrażeń")] private int armorPointsPerDamageReduction = 2;
 
+    // --- DODANE: Crit Chance ---
+    [Header("Critical")]
+    [SerializeField, Range(0f, 100f), Tooltip("Szansa na trafienie krytyczne w procentach (np. 10 = 10%)")]
+    private float critChancePercent = 0f;
+    public float CritChancePercent => critChancePercent;
+
+    [Header("Combat")]
+    [SerializeField, Tooltip("Podstawowe obrażenia zadawane przez gracza")]
+    private int baseDamage = 25;
+    public int BaseDamage => baseDamage;
+    
     private int currentEnergy;
     private bool attackedThisTick = false; // ustawiane przez gracza, jeśli wykonał atak w tej turze
 
@@ -104,5 +115,13 @@ public class StatsController : MonoBehaviour
         if (armorPointsPerDamageReduction <= 0) return incomingDamage;
         int reduction = armorPoints / ArmorPointsPerDamageReduction;
         return Mathf.Max(0, incomingDamage - reduction);
+    }
+
+    // --- DODANE: krytyczne trafienie ---
+    // Zwraca true jeśli rzut krytyka się powiódł
+    public bool RollCrit()
+    {
+        if (critChancePercent <= 0f) return false;
+        return Random.value < (critChancePercent / 100f);
     }
 }

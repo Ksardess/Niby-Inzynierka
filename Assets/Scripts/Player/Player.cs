@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private GridManager gridManager; // Referencja do GridManager
     private StatsController playerStats; // referencja do statystyk
 
+
     void Start()
     {
         healthController = GetComponent<HealthController>();
@@ -72,6 +73,12 @@ public class Player : MonoBehaviour
                             return;
                         }
 
+                        // oznacz, że gracz atakował w tej turze (zablokuje regen)
+                        if (playerStats != null)
+                        {
+                            playerStats.MarkAttackedThisTurn();
+                        }
+
                         if (animator != null)
                         {
                             animator.SetTrigger("Attack1");
@@ -84,7 +91,15 @@ public class Player : MonoBehaviour
                         }
                         if (enemyHealth != null)
                         {
-                            enemyHealth.TakeDamage(25); // Zadaj 25 obrażeń
+                            int damage = (playerStats != null) ? playerStats.BaseDamage : 25;
+                            // Rzut krytyka — jeśli się uda, obrażenia x2
+                            if (playerStats != null && playerStats.RollCrit())
+                            {
+                                damage *= 2;
+                                Debug.Log("Critical hit! Damage: " + damage);
+                            }
+
+                            enemyHealth.TakeDamage(damage);
                         }
 
                         // Po wykonaniu ataku przejdź do tury przeciwnika
