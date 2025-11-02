@@ -21,6 +21,7 @@ public class GridManager : MonoBehaviour {
     private List<BasicEnemy> _enemies = new List<BasicEnemy>(); // Lista przeciwników
 
     private PlayerController _player;
+    private PlayerStats _playerStats; // referencja do statystyk gracza
     private int _ticks = 0; // Licznik ticków
     private bool _isPlayerTurn = true; // Flaga określająca, czy jest tura gracza
 
@@ -35,6 +36,9 @@ public class GridManager : MonoBehaviour {
         var playerInstance = Instantiate(_playerPrefab, new Vector3(_width / 2, _height / 2, -1), Quaternion.identity);
         _player = playerInstance.GetComponent<PlayerController>();
         _player.Init(this, new Vector2(_width / 2, _height / 2));
+
+        // przypnij PlayerStats jeśli istnieje na prefabie
+        _playerStats = playerInstance.GetComponent<PlayerStats>();
 
         CameraFollow cameraFollow = _cam.GetComponent<CameraFollow>();
         if (cameraFollow != null)
@@ -99,6 +103,13 @@ public class GridManager : MonoBehaviour {
     {
         _ticks++;
         UpdateTickText(); // Zaktualizuj tekst po każdym ticku
+
+        // przekazujemy Tick do PlayerStats aby mogła zregenerować energię (jeśli warunki spełnione)
+        if (_playerStats != null)
+        {
+            _playerStats.OnGridTick(_ticks);
+        }
+
         _isPlayerTurn = false; // Zmień na turę przeciwnika
         StartCoroutine(EnemyTurn());
         Debug.Log("Ticks: " + _ticks);
