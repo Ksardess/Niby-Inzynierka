@@ -11,6 +11,9 @@ public class StatsController : MonoBehaviour
     [Header("Regen")]
     [SerializeField] private int energyRegenAmount = 5;      // ile energii regeneruje
     [SerializeField] private int regenIntervalTicks = 2;     // co ile ticków regeneracja
+    // expose regen value
+    public int EnergyRegenAmount => energyRegenAmount;
+    public int RegenIntervalTicks => regenIntervalTicks;
 
     [Header("Armor")]
     [SerializeField, Tooltip("Ilość punktów pancerza gracza")] private int armorPoints = 0;
