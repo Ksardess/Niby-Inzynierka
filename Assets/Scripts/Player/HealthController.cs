@@ -41,6 +41,8 @@ public class HealthController : MonoBehaviour
 
         currentHealth -= finalDamage;
         Debug.Log($"{gameObject.name} otrzymał obrażenia: {damage} (po pancerzu: {finalDamage}), pozostałe zdrowie: {currentHealth}");
+        
+        ActionLogManager.Instance?.AddLog($"-{gameObject.name} Got:{finalDamage} Damage");
 
         UpdateHealthText();
 
@@ -66,6 +68,7 @@ public class HealthController : MonoBehaviour
                 Destroy(gameObject); // fallback, jeśli nie ma animatora
             }
             Debug.Log($"{gameObject.name} został zniszczony (po animacji Death)");
+            ActionLogManager.Instance?.AddLog($"-{gameObject.name} Died");
             // NIE wywołuj Destroy tutaj, poczekaj na Animation Event!
         }
     }
@@ -85,6 +88,7 @@ public class HealthController : MonoBehaviour
         }
 
         Debug.Log($"{gameObject.name} został uleczony o: {amount}, obecne zdrowie: {currentHealth}");
+        ActionLogManager.Instance?.AddLog($"+{gameObject.name} Healed:{amount} Health");
 
         if (healthBar != null)
         {

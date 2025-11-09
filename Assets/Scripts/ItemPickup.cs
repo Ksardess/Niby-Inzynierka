@@ -27,6 +27,7 @@ public class ItemPickup : MonoBehaviour
         {
             InventoryController.instance.AddItem(inventoryName, itemType, amount);
             Debug.Log($"{itemType} x{amount} dodano do ekwipunku!");
+            ActionLogManager.Instance?.AddLog($"-{itemType} x{amount} added to inventory");
         }
         else
         {
