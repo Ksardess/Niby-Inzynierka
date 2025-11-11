@@ -18,6 +18,12 @@ public class FPSCounter : MonoBehaviour
 
     void Awake()
     {
+        // Wyłączanie ograniczeń FPS:
+        //  - wyłącz VSync (synchronizację z odświeżaniem monitora)
+        //  - zresetuj targetFrameRate do -1 (domyślne / brak limitu)
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = -1;
+
         timeLeft = updateInterval;
 
         if (fpsText == null)
